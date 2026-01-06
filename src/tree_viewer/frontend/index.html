@@ -31,6 +31,9 @@
       sendMessageToStreamlitClient("streamlit:setComponentValue", { value: value });
     }
 
+    // Track current data to avoid unnecessary re-renders
+    let currentDataJson = null;
+
     // Handle messages from Streamlit
     window.addEventListener("message", function(event) {
       if (event.data.type === "streamlit:render") {
@@ -42,6 +45,14 @@
       if (!event.args || !event.args.data) {
         return;
       }
+
+      // Only re-render if data actually changed
+      const newDataJson = JSON.stringify(event.args.data);
+      if (newDataJson === currentDataJson) {
+        return;  // Data unchanged, keep current tree state
+      }
+
+      currentDataJson = newDataJson;
       renderTree(event.args.data);
     }
 

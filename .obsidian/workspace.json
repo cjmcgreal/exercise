@@ -240,6 +240,7 @@
   },
   "active": "a0e5bfb9ec7d6ad4",
   "lastOpenFiles": [
+    "src/tree_viewer/frontend/index.html.tmp.29822.1767724727225",
     "src/tree_viewer/__pycache__/tree_viewer_app.cpython-312.pyc.130140120709424",
     "src/tree_viewer/tree_viewer_app.py.tmp.29822.1767724409562",
     "src/tree_viewer/tree_viewer_app.py.tmp.29822.1767724402087",
@@ -250,7 +251,6 @@
     "src/tree_viewer/tree_viewer_app.py.tmp.29822.1767723900670",
     "src/tree_viewer/tree_component.py.tmp.29822.1767723883107",
     "src/tree_viewer/tree_viewer_workflow.py.tmp.29822.1767723877149",
-    "src/tree_viewer/tree_viewer_workflow.py.tmp.29822.1767723871427",
     "calendar_2/2026-01-06 event on aon the second calendar.md",
     "calendar/2026-01-07 another event to test the calendar.md",
     "calendar/2026-01-06 New event to test calendar.md",
