@@ -1,0 +1,252 @@
+{
+  "main": {
+    "id": "d88f92aaaa43c88a",
+    "type": "split",
+    "children": [
+      {
+        "id": "3939804dacc48975",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "205b823ba2ec80e3",
+            "type": "leaf",
+            "state": {
+              "type": "bases",
+              "state": {
+                "file": "main.base",
+                "viewName": "Table"
+              },
+              "icon": "lucide-table",
+              "title": "main"
+            }
+          },
+          {
+            "id": "d9856399d92b02a9",
+            "type": "leaf",
+            "state": {
+              "type": "bases",
+              "state": {
+                "file": "docs/children.base",
+                "viewName": "active"
+              },
+              "icon": "lucide-table",
+              "title": "children"
+            }
+          },
+          {
+            "id": "8313026dfaaca274",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "exercise.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "exercise"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e569b65d6cbc2abf",
+    "type": "split",
+    "children": [
+      {
+        "id": "7e49d5ebaeb9760a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "293bf9aee3a5249b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "9380dd74fd24fa06",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "eb2be45324555fb9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 304.5
+  },
+  "right": {
+    "id": "44ae998581088d7e",
+    "type": "split",
+    "children": [
+      {
+        "id": "2e1c3004e39cfceb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d7a0d87e2f8ee172",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "exercise.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for exercise"
+            }
+          },
+          {
+            "id": "ab241246fe7039c1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "exercise.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from exercise"
+            }
+          },
+          {
+            "id": "ae202148f37ef7ec",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "4a92542600088960",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "cf12dfa426a5dc82",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "exercise.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of exercise"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-projects:Open projects": false
+    }
+  },
+  "active": "8313026dfaaca274",
+  "lastOpenFiles": [
+    "workouts/mobility/mobility.md",
+    "docs/children.base",
+    "exercise.md",
+    "workouts/cardio/cardio.md",
+    "workouts/strength/strength.md",
+    "workouts/core.md",
+    "main.base",
+    "workouts/kettlebells/kettlebells.md",
+    "workouts/agility/agility.md",
+    "workouts/kettlebells/KB Cossack squat to row.md",
+    "workouts/kettlebells/kettlebells.base",
+    "workouts/cardio/Cardio 3 - Anaerobic.md",
+    "workouts/kettlebells/KB figure 8s.md",
+    "workouts/kettlebells/KB front swings.md",
+    "workouts/kettlebells/KB Pass through lunges.md",
+    "workouts/kettlebells/KB single arm swings.md",
+    "workouts/kettlebells",
+    "workouts/cardio/Cardio 1 - Zone 2.md",
+    "workouts/agility/Untitled.md",
+    "workouts/agility/med ball rotational throws.md",
+    "workouts/agility/box jumps.md",
+    "workouts/agility/sprints.md",
+    "workouts/agility/cable woodchoppers.md",
+    "workouts/agility/landmine rotations.md",
+    "workouts/agility/pogo jumps.md",
+    "workouts/agility/nordic hamstring eccentrics.md",
+    "workouts/agility/slow eccentric split squat.md",
+    "workouts/agility/single-leg RDL.md",
+    "docs",
+    "Untitled 1.md",
+    "exercises/core",
+    "exercises/strength",
+    "exercises/special_focus",
+    "exercises/mobility",
+    "exercises/cardio"
+  ]
+}

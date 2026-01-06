@@ -1,0 +1,13 @@
+views:
+  - type: table
+    name: Table
+    order:
+      - file.name
+      - file.path
+      - status
+      - parent
+      - category
+    columnSize:
+      file.name: 217
+      file.path: 290
+      note.status: 119

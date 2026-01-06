@@ -1,0 +1,29 @@
+views:
+  - type: table
+    name: ALL
+    filters:
+      and:
+        - parent == this.file
+    order:
+      - file.name
+      - parent
+      - status
+      - category
+    columnSize:
+      file.name: 169
+      note.status: 160
+      note.category: 259
+  - type: table
+    name: active
+    filters:
+      and:
+        - parent == this.file
+        - status == "active"
+    order:
+      - file.name
+      - parent
+      - status
+      - category
+    columnSize:
+      note.status: 160
+      note.category: 259

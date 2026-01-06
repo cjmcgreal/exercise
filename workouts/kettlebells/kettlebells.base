@@ -1,0 +1,17 @@
+views:
+  - type: table
+    name: Table
+    filters:
+      and:
+        - parent == link("kettlebells")
+        - status == "proposed"
+    order:
+      - file.name
+      - parent
+      - status
+      - category
+      - reference
+      - type
+    columnSize:
+      file.name: 175
+      note.status: 112
