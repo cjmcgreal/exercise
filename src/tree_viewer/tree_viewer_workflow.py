@@ -127,6 +127,27 @@ def get_tree_for_display(
         return tree_data, all_nodes
 
 
+def get_parent_node(df: pd.DataFrame, node_name: str) -> Optional[str]:
+    """
+    Get the parent of a node.
+
+    Args:
+        df: Notes DataFrame
+        node_name: Name of the node
+
+    Returns:
+        Parent node name, or None if no parent
+    """
+    matches = df[df['name'] == node_name]
+    if matches.empty:
+        return None
+
+    parent = matches.iloc[0].get('parent', '')
+    if parent and str(parent).strip():
+        return str(parent).strip()
+    return None
+
+
 def get_node_details(df: pd.DataFrame, node_name: str) -> Dict[str, Any]:
     """
     Get details for a specific node.

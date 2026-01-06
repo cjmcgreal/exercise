@@ -13,6 +13,7 @@ from src.tree_viewer.tree_viewer_workflow import (
     apply_filters,
     get_tree_for_display,
     get_node_details,
+    get_parent_node,
 )
 from src.tree_viewer.tree_component import render_d3_tree
 
@@ -91,7 +92,7 @@ def render_tree_viewer():
     )
 
     # Root node selector
-    col1, col2 = st.columns([3, 1])
+    col1, col2, col3 = st.columns([3, 1, 1])
     with col1:
         # Find current index
         current_root = tree_data.get('name', '')
@@ -114,11 +115,29 @@ def render_tree_viewer():
             st.query_params["root"] = selected
 
     with col2:
+        # Up button - go to parent
+        current_node = st.session_state.selected_root or selected
+        parent = get_parent_node(df, current_node) if current_node else None
+
+        # Show parent name above button
+        if parent:
+            st.caption(f"↑ {parent}")
+        else:
+            st.caption("↑ (none)")
+
+        if st.button("Up", disabled=(parent is None), help="Go to parent node"):
+            if parent:
+                st.session_state.selected_root = parent
+                st.query_params["root"] = parent
+                st.rerun()
+
+    with col3:
         # Reset button
-        if st.button("Reset to root"):
+        if st.button("Reset"):
             st.session_state.selected_root = None
             if "root" in st.query_params:
                 del st.query_params["root"]
+            st.rerun()
 
     # Render tree
     if available_nodes:
@@ -144,10 +163,11 @@ def render_tree_viewer():
         # Render D3 tree - returns clicked node name
         clicked = render_d3_tree(tree_data, height=height, key="main_tree")
 
-        # Update root if node was clicked (no rerun needed - Streamlit handles it)
+        # Update root if node was clicked
         if clicked and clicked != st.session_state.selected_root:
             st.session_state.selected_root = clicked
             st.query_params["root"] = clicked
+            st.rerun()
 
         # Node details panel
         st.divider()
