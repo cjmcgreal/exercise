@@ -6,6 +6,7 @@ Orchestrates calls between UI, logic, and database layers.
 
 from typing import Dict, List, Any, Optional, Tuple
 import pandas as pd
+import streamlit as st
 
 from src.tree_viewer.tree_viewer_db import (
     load_vault_csv,
@@ -24,9 +25,10 @@ from src.tree_viewer.tree_viewer_logic import (
 )
 
 
+@st.cache_data
 def load_vault_data(vault_path: str = ".") -> pd.DataFrame:
     """
-    Load vault data from CSV.
+    Load vault data from CSV. Cached to avoid reloading on every rerun.
 
     Args:
         vault_path: Path to vault root

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    .node circle { fill: #fff; stroke: steelblue; stroke-width: 2px; cursor: pointer; }
+    .node text { font: 14px sans-serif; cursor: pointer; }
+    .node text:hover { fill: steelblue; font-weight: bold; }
+    .link { fill: none; stroke: #ccc; stroke-width: 1.5px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+  <script>
+    // Streamlit component boilerplate
+    function sendMessageToStreamlitClient(type, data) {
+      const outData = Object.assign({ isStreamlitMessage: true, type: type }, data);
+      window.parent.postMessage(outData, "*");
+    }
+
+    function init() {
+      sendMessageToStreamlitClient("streamlit:componentReady", { apiVersion: 1 });
+    }
+
+    function setFrameHeight(height) {
+      sendMessageToStreamlitClient("streamlit:setFrameHeight", { height: height });
+    }
+
+    function sendDataToPython(value) {
+      sendMessageToStreamlitClient("streamlit:setComponentValue", { value: value });
+    }
+
+    // Handle messages from Streamlit
+    window.addEventListener("message", function(event) {
+      if (event.data.type === "streamlit:render") {
+        onRender(event.data);
+      }
+    });
+
+    function onRender(event) {
+      if (!event.args || !event.args.data) {
+        return;
+      }
+      renderTree(event.args.data);
+    }
+
+    function renderTree(data) {
+      // Clear
+      d3.select("#root").selectAll("*").remove();
+
+      const margin = {top: 20, right: 10, bottom: 20, left: 10};
+      const barHeight = 25;
+      let i = 0;
+
+      const svg = d3.select("#root").append("svg")
+        .attr("width", 1000)
+        .attr("height", 100)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      const tree = d3.tree().nodeSize([0, 30]);
+      const root = d3.hierarchy(data);
+      root.x0 = 0;
+      root.y0 = 0;
+      root.each(function(d) { d._id = i++; });
+
+      function update(source) {
+        const nodes = tree(root);
+        const arr = [];
+        nodes.eachBefore(function(n) { arr.push(n); });
+        arr.forEach(function(n, idx) { n.x = idx * barHeight; });
+
+        const height = Math.max(300, arr.length * barHeight + margin.top + margin.bottom);
+        d3.select("svg").attr("height", height);
+        setFrameHeight(height + 20);
+
+        // Nodes
+        const node = svg.selectAll("g.node").data(arr, function(d) { return d._id; });
+
+        const enter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", "translate(" + source.y0 + "," + source.x0 + ")");
+
+        // Circle - expand/collapse
+        enter.append("circle")
+          .attr("r", 1e-6)
+          .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; })
+          .on("click", function(d) {
+            d3.event.stopPropagation();
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        // Text - click to select
+        enter.append("text")
+          .attr("x", 10)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.data.name; })
+          .style("fill-opacity", 1e-6)
+          .on("click", function(d) {
+            d3.event.stopPropagation();
+            // Send clicked node to Python
+            sendDataToPython(d.data.name);
+          });
+
+        // Update transition
+        const upd = node.merge(enter).transition().duration(300);
+        upd.attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+        upd.select("circle").attr("r", 5)
+          .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+        upd.select("text").style("fill-opacity", 1);
+
+        // Exit
+        node.exit().transition().duration(300)
+          .attr("transform", "translate(" + source.y + "," + source.x + ")")
+          .remove();
+
+        // Links
+        const link = svg.selectAll("path.link").data(arr.slice(1), function(d) { return d._id; });
+        const conn = function(d) {
+          return "M" + d.parent.y + "," + d.parent.x + "V" + d.x + "H" + d.y;
+        };
+
+        link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", function(d) {
+            var o = {x: source.x0, y: source.y0, parent: {x: source.x0, y: source.y0}};
+            return conn(o);
+          })
+          .merge(link).transition().duration(300).attr("d", conn);
+
+        link.exit().transition().duration(300)
+          .attr("d", function(d) {
+            var o = {x: source.x, y: source.y, parent: {x: source.x, y: source.y}};
+            return conn(o);
+          })
+          .remove();
+
+        arr.forEach(function(d) { d.x0 = d.x; d.y0 = d.y; });
+      }
+
+      update(root);
+    }
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

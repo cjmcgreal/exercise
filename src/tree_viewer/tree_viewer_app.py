@@ -4,9 +4,8 @@ Tree Viewer Streamlit App
 Displays an interactive tree visualization with filtering, inspired by Obsidian bases.
 """
 
-import json
 import streamlit as st
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 from src.tree_viewer.tree_viewer_workflow import (
     load_vault_data,
@@ -15,238 +14,7 @@ from src.tree_viewer.tree_viewer_workflow import (
     get_tree_for_display,
     get_node_details,
 )
-
-
-def get_d3_tree_html(tree_data: Dict[str, Any], on_click_callback: bool = True) -> str:
-    """
-    Generate HTML/JS for D3 collapsible tree visualization.
-
-    Args:
-        tree_data: Nested dictionary with 'name' and 'children' keys
-        on_click_callback: Whether to include click callback for node selection
-
-    Returns:
-        HTML string with embedded D3 visualization
-    """
-    # Convert tree data to JSON for embedding in JS
-    tree_json = json.dumps(tree_data)
-
-    # Click handler that updates URL query params to set new root
-    click_handler = """
-        // When text is clicked, update URL to set this node as root
-        nodeEnter.select('text').on('click', function(event, d) {
-            event.stopPropagation();
-            const nodeName = d.data.name;
-            // Update parent window's URL with new root parameter
-            const url = new URL(window.parent.location.href);
-            url.searchParams.set('root', nodeName);
-            window.parent.location.href = url.toString();
-        });
-
-        // Style text as clickable
-        nodeEnter.select('text').style('cursor', 'pointer');
-    """ if on_click_callback else ""
-
-    html = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <style>
-            .node circle {{
-                fill: #fff;
-                stroke: steelblue;
-                stroke-width: 2px;
-                cursor: pointer;
-            }}
-            .node text {{
-                font: 14px sans-serif;
-            }}
-            .node text:hover {{
-                fill: steelblue;
-                font-weight: bold;
-            }}
-            .link {{
-                fill: none;
-                stroke: #ccc;
-                stroke-width: 1.5px;
-            }}
-            body {{
-                margin: 0;
-                overflow: hidden;
-            }}
-        </style>
-    </head>
-    <body>
-        <div class="hierarchy-container"></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
-        <script>
-            let tree = d3.tree;
-            let hierarchy = d3.hierarchy;
-            let select = d3.select;
-            let data = {tree_json};
-
-            class MyTree {{
-                constructor() {{
-                    this.connector = (d) => "M" + d.parent.y + "," + d.parent.x + "V" + d.x + "H" + d.y;
-
-                    this.collapse = (d) => {{
-                        if (d.children) {{
-                            d._children = d.children;
-                            d._children.forEach(this.collapse);
-                            d.children = null;
-                        }}
-                    }};
-
-                    this.click = (d) => {{
-                        if (d.children) {{
-                            d._children = d.children;
-                            d.children = null;
-                        }} else {{
-                            d.children = d._children;
-                            d._children = null;
-                        }}
-                        this.update(d);
-                    }};
-
-                    this.update = (source) => {{
-                        this.width = 800;
-                        let nodes = this.tree(this.root);
-                        let nodesSort = [];
-                        nodes.eachBefore(function (n) {{ nodesSort.push(n); }});
-                        this.height = Math.max(500, nodesSort.length * this.barHeight + this.margin.top + this.margin.bottom);
-                        let links = nodesSort.slice(1);
-                        nodesSort.forEach((n, i) => {{ n.x = i * this.barHeight; }});
-
-                        d3.select('svg').transition()
-                            .duration(this.duration)
-                            .attr("height", this.height);
-
-                        let node = this.svg.selectAll('g.node')
-                            .data(nodesSort, function (d) {{
-                                return d.id || (d.id = ++this.i);
-                            }});
-
-                        var nodeEnter = node.enter().append('g')
-                            .attr('class', 'node')
-                            .attr('transform', function () {{
-                                return 'translate(' + source.y0 + ',' + source.x0 + ')';
-                            }})
-                            .on('click', this.click);
-
-                        nodeEnter.append('circle')
-                            .attr('r', 1e-6)
-                            .style('fill', function (d) {{
-                                return d._children ? 'lightsteelblue' : '#fff';
-                            }});
-
-                        nodeEnter.append('text')
-                            .attr('x', 10)
-                            .attr('dy', '.35em')
-                            .attr('text-anchor', 'start')
-                            .text(function (d) {{
-                                return d.data.name;
-                            }})
-                            .style('fill-opacity', 1e-6);
-
-                        nodeEnter.append('svg:title').text(function (d) {{ return d.data.name; }});
-
-                        {click_handler}
-
-                        let nodeUpdate = node.merge(nodeEnter)
-                            .transition()
-                            .duration(this.duration);
-
-                        nodeUpdate
-                            .attr('transform', function (d) {{
-                                return 'translate(' + d.y + ',' + d.x + ')';
-                            }});
-
-                        nodeUpdate.select('circle')
-                            .attr('r', 5)
-                            .style('fill', function (d) {{
-                                return d._children ? 'lightsteelblue' : '#fff';
-                            }});
-
-                        nodeUpdate.select('text')
-                            .style('fill-opacity', 1);
-
-                        var nodeExit = node.exit().transition()
-                            .duration(this.duration);
-
-                        nodeExit
-                            .attr('transform', function (d) {{
-                                return 'translate(' + source.y + ',' + source.x + ')';
-                            }})
-                            .remove();
-
-                        nodeExit.select('circle').attr('r', 1e-6);
-                        nodeExit.select('text').style('fill-opacity', 1e-6);
-
-                        var link = this.svg.selectAll('path.link')
-                            .data(links, function (d) {{
-                                return d.id + '->' + d.parent.id;
-                            }});
-
-                        let linkEnter = link.enter().insert('path', 'g')
-                            .attr('class', 'link')
-                            .attr('d', (d) => {{
-                                var o = {{ x: source.x0, y: source.y0, parent: {{ x: source.x0, y: source.y0 }} }};
-                                return this.connector(o);
-                            }});
-
-                        link.merge(linkEnter).transition()
-                            .duration(this.duration)
-                            .attr('d', this.connector);
-
-                        link.exit().transition()
-                            .duration(this.duration)
-                            .attr('d', (d) => {{
-                                var o = {{ x: source.x, y: source.y, parent: {{ x: source.x, y: source.y }} }};
-                                return this.connector(o);
-                            }})
-                            .remove();
-
-                        nodesSort.forEach(function (d) {{
-                            d.x0 = d.x;
-                            d.y0 = d.y;
-                        }});
-                    }};
-                }}
-
-                $onInit() {{
-                    this.margin = {{ top: 20, right: 10, bottom: 20, left: 10 }};
-                    this.width = 1200 - this.margin.right - this.margin.left;
-                    this.height = 600 - this.margin.top - this.margin.bottom;
-                    this.barHeight = 25;
-                    this.barWidth = this.width * .8;
-                    this.i = 0;
-                    this.duration = 400;
-                    this.tree = tree().size([this.width, this.height]);
-                    this.tree = tree().nodeSize([0, 30]);
-                    this.root = this.tree(hierarchy(data));
-                    this.root.each((d) => {{
-                        d.name = d.id;
-                        d.id = this.i;
-                        this.i++;
-                    }});
-                    this.root.x0 = this.root.x;
-                    this.root.y0 = this.root.y;
-                    this.svg = select('.hierarchy-container').append('svg')
-                        .attr('width', this.width + this.margin.right + this.margin.left)
-                        .attr('height', this.height + this.margin.top + this.margin.bottom)
-                        .append('g')
-                        .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
-                    this.update(this.root);
-                }}
-            }};
-
-            let myTree = new MyTree();
-            myTree.$onInit();
-        </script>
-    </body>
-    </html>
-    """
-    return html
+from src.tree_viewer.tree_component import render_d3_tree
 
 
 def render_tree_viewer():
@@ -257,7 +25,7 @@ def render_tree_viewer():
     """
     st.header("Tree Viewer")
 
-    # Read root from URL query params (set when user clicks a tree node)
+    # Read root from URL query params
     query_params = st.query_params
     url_root = query_params.get("root", None)
 
@@ -340,20 +108,17 @@ def render_tree_viewer():
             help="Select a node to view its tree. Click node names in the tree to navigate."
         )
 
-        # Update session state and URL if selection changed
+        # Update session state and URL if selection changed (no rerun needed)
         if selected != st.session_state.selected_root:
             st.session_state.selected_root = selected
             st.query_params["root"] = selected
-            st.rerun()
 
     with col2:
         # Reset button
         if st.button("Reset to root"):
             st.session_state.selected_root = None
-            # Clear the root query param
             if "root" in st.query_params:
                 del st.query_params["root"]
-            st.rerun()
 
     # Render tree
     if available_nodes:
@@ -374,9 +139,15 @@ def render_tree_viewer():
         node_count = count_nodes(tree_data)
         height = max(400, min(800, node_count * 28 + 100))
 
-        # Display D3 tree
-        html = get_d3_tree_html(tree_data)
-        st.components.v1.html(html, height=height, scrolling=True)
+        st.caption("Click ● to expand/collapse | Click name to set as root")
+
+        # Render D3 tree - returns clicked node name
+        clicked = render_d3_tree(tree_data, height=height, key="main_tree")
+
+        # Update root if node was clicked (no rerun needed - Streamlit handles it)
+        if clicked and clicked != st.session_state.selected_root:
+            st.session_state.selected_root = clicked
+            st.query_params["root"] = clicked
 
         # Node details panel
         st.divider()
