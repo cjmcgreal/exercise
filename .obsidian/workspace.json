@@ -6,35 +6,10 @@
       {
         "id": "3939804dacc48975",
         "type": "tabs",
+        "dimension": 45.59068219633943,
         "children": [
           {
             "id": "205b823ba2ec80e3",
-            "type": "leaf",
-            "state": {
-              "type": "bases",
-              "state": {
-                "file": "main.base",
-                "viewName": "Table"
-              },
-              "icon": "lucide-table",
-              "title": "main"
-            }
-          },
-          {
-            "id": "d9856399d92b02a9",
-            "type": "leaf",
-            "state": {
-              "type": "bases",
-              "state": {
-                "file": "docs/children.base",
-                "viewName": "active"
-              },
-              "icon": "lucide-table",
-              "title": "children"
-            }
-          },
-          {
-            "id": "8313026dfaaca274",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -46,9 +21,58 @@
               "icon": "lucide-file",
               "title": "exercise"
             }
+          },
+          {
+            "id": "20fa4e961cf870fb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "workouts/cardio/cardio.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "cardio"
+            }
+          }
+        ]
+      },
+      {
+        "id": "0e7450c0c55ee01c",
+        "type": "tabs",
+        "dimension": 54.409317803660564,
+        "children": [
+          {
+            "id": "b0f37a4352c49167",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "reference_tree.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "reference_tree"
+            }
+          },
+          {
+            "id": "f462be1867c79ae4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "reference_tree_python.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "reference_tree_python"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -121,7 +145,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "exercise.md",
+                "file": "reference_tree_python.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,7 +155,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for exercise"
+              "title": "Backlinks for reference_tree_python"
             }
           },
           {
@@ -140,12 +164,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "exercise.md",
+                "file": "reference_tree_python.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from exercise"
+              "title": "Outgoing links from reference_tree_python"
             }
           },
           {
@@ -183,13 +207,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "exercise.md",
+                "file": "reference_tree_python.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of exercise"
+              "title": "Outline of reference_tree_python"
             }
           }
         ],
@@ -211,17 +235,26 @@
       "obsidian-projects:Open projects": false
     }
   },
-  "active": "8313026dfaaca274",
+  "active": "f462be1867c79ae4",
   "lastOpenFiles": [
-    "workouts/mobility/mobility.md",
-    "docs/children.base",
+    "README.md",
+    "README.md.tmp.29822.1767717444513",
+    "crawl_vault.sh",
+    "crawl_vault.sh.tmp.29822.1767717209571",
     "exercise.md",
-    "workouts/cardio/cardio.md",
+    "reference_tree_python.md",
+    "vault_notes.csv",
+    "vault_crawler.py",
+    "vault_crawler.py.tmp.29822.1767717068314",
     "workouts/strength/strength.md",
-    "workouts/core.md",
-    "main.base",
     "workouts/kettlebells/kettlebells.md",
+    "reference_tree.md",
+    "workouts/cardio/cardio.md",
+    "main.base",
+    "workouts/core.md",
     "workouts/agility/agility.md",
+    "docs/children.base",
+    "workouts/mobility/mobility.md",
     "workouts/kettlebells/KB Cossack squat to row.md",
     "workouts/kettlebells/kettlebells.base",
     "workouts/cardio/Cardio 3 - Anaerobic.md",
@@ -239,14 +272,6 @@
     "workouts/agility/landmine rotations.md",
     "workouts/agility/pogo jumps.md",
     "workouts/agility/nordic hamstring eccentrics.md",
-    "workouts/agility/slow eccentric split squat.md",
-    "workouts/agility/single-leg RDL.md",
-    "docs",
-    "Untitled 1.md",
-    "exercises/core",
-    "exercises/strength",
-    "exercises/special_focus",
-    "exercises/mobility",
-    "exercises/cardio"
+    "workouts/agility/slow eccentric split squat.md"
   ]
 }

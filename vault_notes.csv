@@ -1,0 +1,35 @@
+name,file_path,parent,status,category,reference,type
+agility,workouts/agility/agility.md,exercise,active,,,
+box jumps,workouts/agility/box jumps.md,agility,active,,,
+cable woodchoppers,workouts/agility/cable woodchoppers.md,agility,proposed,rotational power,,
+cardio,workouts/cardio/cardio.md,exercise,active,,,
+Cardio 1 - Zone 2,workouts/cardio/Cardio 1 - Zone 2.md,cardio,active,,,
+Cardio 2 - VO2 Max,workouts/cardio/Cardio 2 - VO2 Max.md,cardio,active,,,
+Cardio 3 - Anaerobic,workouts/cardio/Cardio 3 - Anaerobic.md,cardio,active,,,
+core,workouts/core.md,exercise,active,,,
+depth jumps off box,workouts/agility/depth jumps off box.md,agility,proposed,reactive plyometrics,,
+exercise,exercise.md,,,,,
+KB Cossack squat to row,workouts/kettlebells/KB Cossack squat to row.md,kettlebells,proposed,,https://www.youtube.com/watch?v=6pkcO8mN5FE,exercise
+KB figure 8s,workouts/kettlebells/KB figure 8s.md,kettlebells,proposed,,https://www.youtube.com/watch?v=6pkcO8mN5FE,exercise
+KB front swings,workouts/kettlebells/KB front swings.md,kettlebells,proposed,,,exercise
+KB Pass through lunges,workouts/kettlebells/KB Pass through lunges.md,kettlebells,proposed,,https://www.youtube.com/watch?v=6pkcO8mN5FE,exercise
+KB single arm swings,workouts/kettlebells/KB single arm swings.md,kettlebells,proposed,,https://www.youtube.com/watch?v=6pkcO8mN5FE,exercise
+kettlebells,workouts/kettlebells/kettlebells.md,exercise,proposed,,,
+landmine rotations,workouts/agility/landmine rotations.md,agility,proposed,rotational power,,
+med ball rotational throws,workouts/agility/med ball rotational throws.md,agility,proposed,rotational power,,
+mobility,workouts/mobility/mobility.md,exercise,active,,,
+nordic hamstring eccentrics,workouts/agility/nordic hamstring eccentrics.md,agility,proposed,eccentric & deceleration strength,,
+ontology,docs/ontology.md,,,,,
+pogo jumps,workouts/agility/pogo jumps.md,agility,proposed,,,
+reference_tree,reference_tree.md,,,,,
+reference_tree_python,reference_tree_python.md,,,,,
+single-leg RDL,workouts/agility/single-leg RDL.md,agility,proposed,eccentric & deceleration strength,,
+skater,exercises/agility/skater.md,,,,,
+skater bounds,workouts/agility/skater bounds.md,agility,proposed,reactive plyometrics,,
+slow eccentric split squat,workouts/agility/slow eccentric split squat.md,agility,proposed,eccentric & deceleration strength,,
+sprints,workouts/agility/sprints.md,agility,active,,,
+strength,workouts/strength/strength.md,exercise,active,,,
+Strength A - Quads + Chest,workouts/strength/Strength A - Quads + Chest.md,,todo,,,
+Strength B - Hamstrings + Back,workouts/strength/Strength B - Hamstrings + Back.md,,,,,
+tuck jumps,workouts/agility/tuck jumps.md,agility,proposed,reactive plyometrics,,
+workflows,docs/workflows.md,,,,,

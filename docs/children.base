@@ -10,7 +10,7 @@ views:
       - status
       - category
     columnSize:
-      file.name: 169
+      file.name: 210
       note.status: 160
       note.category: 259
   - type: table
