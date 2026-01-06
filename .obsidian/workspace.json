@@ -6,7 +6,6 @@
       {
         "id": "3939804dacc48975",
         "type": "tabs",
-        "dimension": 45.59068219633943,
         "children": [
           {
             "id": "205b823ba2ec80e3",
@@ -23,42 +22,7 @@
             }
           },
           {
-            "id": "20fa4e961cf870fb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "workouts/cardio/cardio.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "cardio"
-            }
-          }
-        ]
-      },
-      {
-        "id": "0e7450c0c55ee01c",
-        "type": "tabs",
-        "dimension": 54.409317803660564,
-        "children": [
-          {
-            "id": "b0f37a4352c49167",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "reference_tree.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "reference_tree"
-            }
-          },
-          {
-            "id": "f462be1867c79ae4",
+            "id": "023ca395dff21d20",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -71,8 +35,7 @@
               "title": "reference_tree_python"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -129,7 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304.5
+    "width": 217.5
   },
   "right": {
     "id": "44ae998581088d7e",
@@ -145,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "reference_tree_python.md",
+                "file": "exercise.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -155,7 +118,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for reference_tree_python"
+              "title": "Backlinks for exercise"
             }
           },
           {
@@ -164,12 +127,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "reference_tree_python.md",
+                "file": "exercise.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from reference_tree_python"
+              "title": "Outgoing links from exercise"
             }
           },
           {
@@ -207,13 +170,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "reference_tree_python.md",
+                "file": "exercise.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of reference_tree_python"
+              "title": "Outline of exercise"
             }
           }
         ],
@@ -235,34 +198,36 @@
       "obsidian-projects:Open projects": false
     }
   },
-  "active": "f462be1867c79ae4",
+  "active": "205b823ba2ec80e3",
   "lastOpenFiles": [
-    "README.md",
-    "README.md.tmp.29822.1767717444513",
-    "crawl_vault.sh",
-    "crawl_vault.sh.tmp.29822.1767717209571",
-    "exercise.md",
+    "src/tree_viewer/tree_viewer_app.py.tmp.29822.1767722043612",
+    "src/tree_viewer/tree_viewer_app.py.tmp.29822.1767722028776",
+    "src/tree_viewer/tree_viewer_app.py.tmp.29822.1767722018312",
+    "src/tree_viewer/tree_viewer_workflow.py.tmp.29822.1767721991246",
+    "src/tree_viewer/tree_viewer_workflow.py.tmp.29822.1767721983379",
+    "src/tree_viewer/tree_viewer_logic.py.tmp.29822.1767721975738",
+    "src/tree_viewer/__pycache__/tree_viewer_app.cpython-312.pyc",
+    "src/tree_viewer/__pycache__/tree_viewer_workflow.cpython-312.pyc",
+    "src/tree_viewer/__pycache__/tree_viewer_logic.cpython-312.pyc",
+    "src/tree_viewer/__pycache__/tree_viewer_db.cpython-312.pyc",
+    "src/tree_viewer/__pycache__/__init__.cpython-312.pyc",
     "reference_tree_python.md",
-    "vault_notes.csv",
-    "vault_crawler.py",
-    "vault_crawler.py.tmp.29822.1767717068314",
+    "exercise.md",
+    "workouts/cardio/cardio.md",
+    "Untitled.md",
+    "README.md",
     "workouts/strength/strength.md",
     "workouts/kettlebells/kettlebells.md",
     "reference_tree.md",
-    "workouts/cardio/cardio.md",
-    "main.base",
     "workouts/core.md",
     "workouts/agility/agility.md",
-    "docs/children.base",
     "workouts/mobility/mobility.md",
     "workouts/kettlebells/KB Cossack squat to row.md",
-    "workouts/kettlebells/kettlebells.base",
     "workouts/cardio/Cardio 3 - Anaerobic.md",
     "workouts/kettlebells/KB figure 8s.md",
     "workouts/kettlebells/KB front swings.md",
     "workouts/kettlebells/KB Pass through lunges.md",
     "workouts/kettlebells/KB single arm swings.md",
-    "workouts/kettlebells",
     "workouts/cardio/Cardio 1 - Zone 2.md",
     "workouts/agility/Untitled.md",
     "workouts/agility/med ball rotational throws.md",
@@ -270,8 +235,6 @@
     "workouts/agility/sprints.md",
     "workouts/agility/cable woodchoppers.md",
     "workouts/agility/landmine rotations.md",
-    "workouts/agility/pogo jumps.md",
-    "workouts/agility/nordic hamstring eccentrics.md",
-    "workouts/agility/slow eccentric split squat.md"
+    "workouts/agility/pogo jumps.md"
   ]
 }
